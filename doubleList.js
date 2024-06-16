@@ -43,7 +43,7 @@ class DoublyLinkedList{
     }
     shift(){
         if (this.length === 0) return undefined;
-        oldHead = this.head;0
+        oldHead = this.head;
         if (this.length === 1){
             this.tail = null;
             this.head = null;
