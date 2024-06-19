@@ -70,7 +70,7 @@ class DoublyLinkedList{
         return this;    
     }
     get(index){
-        if (index < 0 && index >= length) return undefined;
+        if (index < 0 || index >= this.length) return undefined;
         else{
             if (index <= this.length/2){
                 let count = 0;
@@ -79,6 +79,7 @@ class DoublyLinkedList{
                     current = current.next;
                     count++;
                 }
+                return current;
             }
             else {
                 let current = this.tail;
@@ -87,15 +88,53 @@ class DoublyLinkedList{
                     current = current.prev;
                     count--;
                 }
+                return current;
             }
-            return current;
+        }
+    }
+
+    set(index, value){
+        let node = this.get(index);
+        if (node) {
+            node.val = value;
+            return true;
+        } return false;
+    }
+    insert(index, value){
+        let insertionNode = this.get(index);
+        let newNode = new Node(value);
+        let prevNode = insertionNode.prev;
+        if (insertionNode){
+            if(index === 0) return this.unshift(value);
+            if(index === this.length) return this.push(value);
+            newNode.prev = insertionNode.prev;
+            newNode.next = insertionNode;
+            insertionNode.prev = newNode;
+            prevNode.next = newNode;
+            this.length++;
+            return true;
+        } 
+    }
+    remove(index){
+        if (index < 0 || index >= this.length) return undefined;
+        if (index === 0) return this.shift();
+        if (index === this.length -1) return this.pop();
+        else {
+            let removedNode = this.get(index);
+            removedNode.prev.next = removedNode.next;
+            removedNode.next.prev = removedNode.prev;
+            removedNode.next = null;
+            removedNode.prev = null;
         }
     }
 }
+
+
 let list = new DoublyLinkedList
 list.push(3)
-console.log(list)
 list.push(2)
-console.log(list)
 list.unshift("H")
-console.log(list)
+list.set(0,"get");
+list.insert(1, "TEST");
+list.remove(1);
+console.log(list);
