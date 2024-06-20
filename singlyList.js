@@ -90,22 +90,13 @@ class SinglyLinkedList{
             return current;
         }
     }
-    insertAt(index){
-        if (this.length < index) return undefined;
-        else {
-            let current = this.head;
-            let previous;
-            let count = 0;
-
-            while(count < index){
-                previous = current;
-                current = current.next;
-                count++ 
-            }
-            console.log( 'SET: ',current);
-            // TODO: REST OF LOGIC
+    insertAt(index, value){
+            let insertionNode = this.get(index-1);
+            let newNode = new Node(value);
+            newNode.next = insertionNode.next;
+            insertionNode.next = newNode;
+            this.length++;
         }
-    }
 }
 
 
@@ -119,5 +110,6 @@ list.push(3);
 // console.log(list);
 list.shift();
 console.log(list);
-list.get(0)
+list.insertAt(1,"TEST");
+console.log(list);
 
