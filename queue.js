@@ -5,25 +5,25 @@ class Node {
     }
 }
 
-class Stack {
+class Queue {
     constructor(){
         this.first = null;
         this.last = null;
         this.length = null;
     }
-    push(val){
+    enqueue(val){
         let newNode = new Node(val);
         if(!this.first){
             this.first = newNode;
             this.last = newNode
         }
         else{
-            newNode.next = this.first; 
-            this.first = newNode;
+            this.last.next = newNode; 
+            this.last = newNode;
         }
         this.length++
     }
-    pop(){
+    dequeue(){
         if(!this.first) return undefined;
         let poppedNode = this.first;
         if(this.length === 1){
@@ -38,18 +38,13 @@ class Stack {
     }
 }
 
-let stack = new Stack();
+let queue = new Queue();
 
-stack.push(1);
-stack.push(2);
-stack.push(3);
-console.log(stack);
-stack.pop();
-console.log(stack);
-stack.push(3)
-console.log(stack);
-stack.pop();
-stack.pop();
-stack.pop();
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
 
-console.log(stack)
+console.log(queue)
+queue.dequeue();
+console.log(queue)
+
