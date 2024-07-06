@@ -53,6 +53,10 @@ class BinarySearchTree {
     console.log("Not found");
     return false;
   }
+  // time complexity is the same of both. Space complexity is greater for BFS with very large trees.
+  // BFS is a bit more memory intensive because you have to store queue variable
+  // Therefore for full and very big trees dfs is more efficient
+
   bfs() {
     let queue = [],
       data = [],
@@ -86,6 +90,16 @@ class BinarySearchTree {
     traverse(this.root);
     return data;
   }
+  dfs_in(){
+    const data = [];
+    const traverse = (node) => {
+      if (node.left) traverse(node.left);
+      data.push(node.value);
+      if(node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return data;
+  }
 
 }
 
@@ -99,6 +113,8 @@ tree.insert(12);
 
 console.log(tree.dfs_pre());
 console.log(tree.dfs_post());
+console.log(tree.dfs_in());
+
 
 
 
