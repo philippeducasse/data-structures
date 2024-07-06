@@ -66,12 +66,39 @@ class BinarySearchTree {
       if(node.right)queue.push(node.right);
     } return data;
   }
+  dfs_pre(){
+    const data = [];
+    const traverse = (node) => {
+      data.push(node.value);
+      if(node.left) traverse(node.left);
+      if(node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return data;
+  }
+  dfs_post(){
+    const data = [];
+    const traverse = (node) => {
+      if(node.left) traverse(node.left);
+      if(node.right) traverse(node.right);
+      data.push(node.value);
+    }
+    traverse(this.root);
+    return data;
+  }
+
 }
 
 let tree = new BinarySearchTree();
-// tree.insert(10);
-// tree.insert(5);
-// tree.insert(2);
-// console.log(tree.bfs());
+tree.insert(10);
+tree.insert(5);
+tree.insert(2);
+tree.insert(6);
+tree.insert(4);
+tree.insert(12);
+
+console.log(tree.dfs_pre());
+console.log(tree.dfs_post());
+
 
 
