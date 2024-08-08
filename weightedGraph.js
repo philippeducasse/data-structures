@@ -1,4 +1,23 @@
-class weightedGraph {
+class PriorityQueue {
+    constructor(){
+        this.values = [];
+    };
+
+    enqueue(val, priority){
+        this.values.push({val, priority});
+        this.sort();
+    };
+
+    dequeue(){
+        return this.values.shift();
+    };
+
+    sort(){
+        this.values.sort((a,b) => a.priority - b.priority);
+    };
+}
+
+class WeightedGraph {
     constructor(){
         this.adjacencyList = [];
     };
@@ -16,7 +35,7 @@ class weightedGraph {
 
 }
 
-let g = new weightedGraph();
+let g = new WeightedGraph();
 
 g.addVertex("A");
 g.addVertex("B");
