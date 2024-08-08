@@ -40,6 +40,5 @@ let g = new WeightedGraph();
 g.addVertex("A");
 g.addVertex("B");
 g.addVertex("C");
-
 g.addEdge("B","C",7);
 console.log(g.adjacencyList)
